@@ -8,5 +8,6 @@
     "esModuleInterop": true,
     "allowJs": true,
     "strict": true
-  }
+  },
+  "presets": ["@babel/preset-react"]
 }
