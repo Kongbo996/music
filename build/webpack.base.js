@@ -12,49 +12,39 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        include: resolve('./src'),
-        use: 'babel-loader',
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-react', '@babel/preset-env'],
+            plugins: ['@babel/plugin-transform-runtime'],
+          },
+        },
       },
       {
         test: /\.css$/,
+        exclude: /node_modules/,
         use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
       {
         test: /\.less$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'postcss-loader',
-          {
-            loader: 'less-loader',
-            options: {
-              lessOptions: {
-                javascriptEnabled: true,
-              },
-            },
-          },
-        ],
+        exclude: /node_modules/,
+        use: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader'],
       },
       {
         test: /\.scss$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: {
-                mode: 'local',
-                localIdentName: '[local]-[hash:base64:5]',
-              },
-            },
-          },
-          'postcss-loader',
-          'sass-loader',
-        ],
+        exclude: /node_modules/,
+        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
+      },
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: 'ts-loader',
       },
       {
         test: /\.(png|jpg|gif)$/,
+        exclude: /node_modules/,
         use: [
           {
             loader: 'url-loader',
@@ -67,6 +57,7 @@ module.exports = {
       },
       {
         test: /\.(xlsx|xls)$/,
+        exclude: /node_modules/,
         loader: 'file-loader',
         options: {
           name: './static/[name].[ext]',
@@ -74,20 +65,17 @@ module.exports = {
       },
       {
         test: /\.(woff|svg|eot|ttf)\??.*$/,
+        exclude: /node_modules/,
         loader: 'url-loader',
         options: {
           name: './static/fonts/[name].[md5:hash:hex:7].[ext]',
         },
       },
-      {
-        test: /\.(ts|tsx)&/,
-        loader: 'ts-loader',
-      },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: '数据魔方',
+      title: '网易云音乐',
       template: 'public/index.html',
     }),
   ],

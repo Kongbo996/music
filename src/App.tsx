@@ -1,7 +1,7 @@
 import React from 'react';
-
+import Routes from './routes/index';
 function App() {
-  return <div>Hello world!</div>
+  return <Routes />;
 }
 
 export default App;

@@ -3,7 +3,7 @@
     "outDir": "./dist/",
     "sourceMap": true,
     "module": "commonjs",
-    "taget": "es5",
+    "target": "es5",
     "jsx": "react",
     "esModuleInterop": true,
     "allowJs": true,
