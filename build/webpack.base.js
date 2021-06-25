@@ -1,4 +1,4 @@
-const { resolve } = require('path');
+const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -6,7 +6,6 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
     alias: {
-      '@': resolve('./src'),
     },
   },
   module: {

@@ -5,7 +5,7 @@ interface data {
   name: string;
 }
 export interface defaultState {
-  singerList: Array<data>;
+  singerList: data[];
 }
 export const defaultState = {
   singerList: []

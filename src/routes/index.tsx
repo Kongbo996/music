@@ -3,18 +3,33 @@ import { Redirect, Router, Switch, Route, IndexRoute } from 'react-router-dom';
 import Recommend from '../pages/Recommend';
 import Singers from '../pages/Singers';
 import Rank from '../pages/Rank';
+import Home from '../pages/index'
 
-class Routes extends React.Component {
-   render() {
-    return (
-      <Switch>
-        <Route path="/recommend" component={Recommend} />
-        <Route path="/rank" component={Rank} />
-        <Route path="/singers" component={Singers} />
-        <Redirect from="/" to="/recommend" />
-      </Switch>
-    );
+export default [
+  {
+    path: "/",
+    component: Home,
+    routes: [
+      {
+        path: "/",
+        exact: true,
+        render: () => (
+          <Redirect to={"/recommend"}/>
+        )
+      },
+      {
+        path: "/recommend",
+        component: Recommend
+      },
+      {
+        path: "/singers",
+        component: Singers
+      },
+      {
+        path: "/rank",
+        component: Rank
+      }
+    ]
   }
-}
+]
 
-export default Routes;

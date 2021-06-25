@@ -1,0 +1,30 @@
+.page {
+  width: 100%;
+  height: 100%;
+  .page-title {
+    width: 100%;
+    height: 44px;
+    text-align: center;
+    line-height: 44px;
+    background: #d44439;
+    color: #f1f1f1;
+  }
+  .page-nav {
+    display: flex;
+    background: #d44439;
+    color: #e4e4e4;
+    height: 44px;
+    a {
+      flex: 1;
+      text-align: center;
+      font-size: 14px;
+      line-height: 44px;
+    }
+    .selected {
+      color: #f1f1f1;
+      span {
+        border-bottom: 2px solid #f1f1f1;
+      }
+    }
+  }
+}

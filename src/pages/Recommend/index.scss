@@ -1,0 +1,21 @@
+.recommend-page {
+  height: 100%;
+  font-size: 12px;
+  padding: 15px;
+  .recommend-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 15px 0;
+  }
+  .recommend-list {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+  .recommend-list-item {
+    width: 108px;
+  }
+  .isThree {
+    margin-right: 10px;
+  }
+}

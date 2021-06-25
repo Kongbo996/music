@@ -7,6 +7,8 @@ import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import routes from './routes/index';
 import stores from './store/index';
 import { Provider } from 'react-redux';
+import { renderRoutes } from 'react-router-config';
+import './App.scss'
 // import stores from './stores/index';
 // import App from './App';
 // import User from './routes/User';
@@ -14,12 +16,7 @@ import { Provider } from 'react-redux';
 ReactDOM.render(
   <Provider store = {stores}>
     <Router>
-      {/* <LocaleProvider locale={zhCN}> */}
-      <Switch>
-        {/* <Route path="/user" component={User} /> */}
-        <Route path="/" component={routes} />
-      </Switch>
-      {/* </LocaleProvider> */}
+      {renderRoutes(routes)}
     </Router>,
   </Provider>,
   document.getElementById('root')
