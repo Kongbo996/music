@@ -7,7 +7,7 @@
     "jsx": "react",
     "esModuleInterop": true,
     "allowJs": true,
-    "strict": true
+    "strict": false
   },
   "presets": ["@babel/preset-react"]
 }

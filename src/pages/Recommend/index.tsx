@@ -3,41 +3,52 @@ import { Link } from 'react-router-dom';
 import { connect, useStore } from 'react-redux';
 import classNames from 'classnames';
 import { Dispatch } from 'redux';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 import * as actions from './store/actionCreators';
+import { renderRoutes } from 'react-router-config';
 import {
   personalized,
   bannerList,
   playerListTags,
   playListDetail,
 } from '../../request/api';
+import { getUserAccount } from '../../request/user';
 import BannerList from './components/Swiper/index';
-import CardItem from './components/Card';
+import {KeepAlive, useKeepAliveEffect} from 'react-keep-alive';
+import CardItem from '../../components/Card';
 import '../../../public/swiper.min.css';
 import './index.scss';
+
 interface Props {
   count: number;
   changeCount: (val: number) => void;
 }
 
-function Recommend(props: Props) {
+type RecommendProps = Props & typeof RouteComponentProps;
+
+function Recommend(props: RecommendProps) {
   const [list, setList] = useState<any>([]);
   const [banner, setBanner] = useState<any>([]);
+  // useKeepAliveEffect(() => {
+  //   console.log("mounted");
+  //   return () => {
+  //     console.log("unmounted");
+  //   };
+  // });
+  const { history, route } = props;
   useEffect(() => {
     getPersonalized();
     getBannerList();
-    playerListTags().then((res) => {
-      console.log(res);
-    });
-    playListDetail().then((res) => {
-      console.log('歌单详情: ', res);
-    });
+    // playerListTags().then((res) => {
+    // });
+    // playListDetail().then((res) => {
+    // });
   }, []);
 
   /** 获取推荐榜单列表 */
   const getPersonalized = () => {
     personalized(100)
       .then((res: any) => {
-        console.log(res.result);
         setList(res.result);
       })
       .catch((err) => {});
@@ -47,14 +58,17 @@ function Recommend(props: Props) {
   const getBannerList = () => {
     bannerList()
       .then((res: any) => {
-        console.log('banner: ', res);
         setBanner(res?.banners);
       })
       .catch((err) => {});
   };
 
+  const handleToLink = (id: number) => {
+    console.log(id, props);
+    history.push(`/recommend/songsheet/${id}`);
+  };
+
   const renderCard = () => {
-    console.log('list', list);
     return list?.map((item: any, idx: number) => {
       return (
         <div
@@ -63,7 +77,7 @@ function Recommend(props: Props) {
             isThree: idx % 3 !== 2,
           })}
         >
-          <CardItem data={item} idx={idx} />
+          <CardItem data={item} onCardId={handleToLink} />
         </div>
       );
     });
@@ -76,6 +90,7 @@ function Recommend(props: Props) {
       </div>
       <div className="recommend-title">推荐歌单</div>
       <div className="recommend-list">{renderCard()}</div>
+      {renderRoutes(route.routes)}
     </div>
   );
 }
@@ -92,4 +107,7 @@ const mapDispatchToProps = (dispatch: Dispatch<actions.RecommendAction>) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(memo(Recommend));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(memo(withRouter(Recommend)));

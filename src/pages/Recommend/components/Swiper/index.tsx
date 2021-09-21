@@ -1,3 +1,7 @@
+/**
+ *  轮播 banner swiper
+ */
+
 import React, { useState, memo, useEffect } from 'react';
 import Swiper from 'swiper';
 

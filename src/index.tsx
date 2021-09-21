@@ -8,16 +8,20 @@ import routes from './routes/index';
 import stores from './store/index';
 import { Provider } from 'react-redux';
 import { renderRoutes } from 'react-router-config';
-import './App.scss'
+import { Provider as KeepAliveProvider, KeepAlive } from 'react-keep-alive'
+import './style/App.scss';
+import './style/index.scss';
+import './style/iconfont.scss';
+import '../public/antd-mobile.min.css'; 
+// import 'antd-mobile/dist/antd-mobile.css';   
 // import stores from './stores/index';
-// import App from './App';
-// import User from './routes/User';
-
 ReactDOM.render(
-  <Provider store = {stores}>
+  <Provider store={stores}>
     <Router>
-      {renderRoutes(routes)}
-    </Router>,
+      <KeepAliveProvider include={['recommend', 'singers', 'rank']}>
+        {renderRoutes(routes)}
+      </KeepAliveProvider>
+    </Router>
   </Provider>,
   document.getElementById('root')
 );

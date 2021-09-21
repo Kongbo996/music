@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { axiosInstance } from './index'
 
 // 推荐歌单/personalized
@@ -22,8 +23,8 @@ export const playerListTags = () => {
  * 获取歌单详情
  * /playlist/detail?id=24381616
  */
- export const playListDetail = () => {
-  return axiosInstance.get('/api/playlist/detail?id=24381616')
+ export const playListDetail = (id: number) => {
+  return axiosInstance.get(`/api/playlist/detail?id=${id}`)
 }
 
 /**
@@ -43,4 +44,36 @@ export const playerListTags = () => {
  */
  export const artistList = () => {
   return axiosInstance.get('/api/top/artists?offset=0&limit=30')
+}
+
+/** 获取验证码 */
+export const getCaptcha = (phone: number) => {
+  return axiosInstance.get(`/api/captcha/sent?phone=${phone}`)
+}
+
+/** 获取验证码 /captcha/verify */
+export const getVerify = (phone: number, captcha: string|number) => {
+  return axiosInstance.get(`/api/captcha/verify?phone=${phone}&captcha=${captcha}`)
+}
+
+export const loginStatus = () => {
+  return axiosInstance.get('/api/login/status')
+}
+
+/** 手机号密码登录 */
+export const getLoginPhone = (phone: number, password: string) => {
+  return axiosInstance.get(`/api/login/cellphone?phone=${phone}&password=${password}`)
+}
+
+export const mapUrl = {
+  song: {
+    getSongUrl: '/api/song/url', // 歌曲url 
+    getRecord: '/uid/user/record' // 播放记录
+  },
+  singers: {
+    getSingersList: '/api/toplist/artist', // 歌手分类
+  },
+  rank: {
+    getTopList: '/api/toplist' // 所有榜单
+  }
 }

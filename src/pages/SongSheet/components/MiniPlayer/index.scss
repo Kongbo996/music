@@ -1,0 +1,55 @@
+.miniplay-container {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #f0ffff;
+  height: 40px;
+  text-align: center;
+  display: flex;
+  border-top: 1px solid rgba(#000, 0.1);
+  .miniplay-left {
+    width: 44px;
+    height: 44px;
+    margin-top: -10px;
+    border-radius: 50%;
+    background-color: #000;
+    text-align: center;
+    margin-left: 20px;
+    animation: myfirst 5s infinite;
+    animation-play-state: running;
+    &.active {
+      animation-play-state: paused;
+    }
+    @keyframes myfirst {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    img {
+      width: 70%;
+      height: 70%;
+      margin: 15%;
+      border-radius: 50%;
+    }
+  }
+  .miniplay-content {
+    flex: 1;
+    line-height: 40px;
+    font-size: 16px;
+  }
+  .miniplay-right {
+    width: 60px;
+    display: flex;
+    div {
+      flex: 1;
+      line-height: 40px;
+      i {
+        font-size: 20px;
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+.music-list-container {
+  display: flex;
+  flex-direction: column;
+  .music-item {
+    height: 60px;
+    display: flex;
+    .music-num {
+      width: 60px;
+      height: 60px;
+      line-height: 60px;
+      text-align: center;
+      font-size: 16px;
+    }
+    .music-info {
+      flex: 1;
+      padding: 5px 0;
+      line-height: 25px;
+      border-bottom: 1px solid rgba(#bba8a8, 0.3);
+    }
+    .info-title {
+      font-size: 16px;
+    }
+    .info-name {
+      color: #bba8a8;
+    }
+  }
+}

@@ -13,6 +13,11 @@ module.exports = merge(base, {
         target: 'https://netease-cloud-music-api-kongbo996.vercel.app',
         pathRewrite: { '^/api': '' },
         changeOrigin: true,
+      },
+      '/uid': {
+        target: 'https://netease-cloud-music-api-kongbo996.vercel.app',
+        pathRewrite: { '^/uid': '' },
+        changeOrigin: true,
       }
     }
   }
