@@ -5,7 +5,7 @@ import routes from './routes/index';
 import stores from './store/index';
 import { Provider } from 'react-redux';
 import { renderRoutes } from 'react-router-config';
-import { Provider as KeepAliveProvider, KeepAlive } from 'react-keep-alive'
+import { Provider as KeepAliveProvider } from 'react-keep-alive'
 import './style/App.scss';
 import './style/index.scss';
 import './style/iconfont.scss';
