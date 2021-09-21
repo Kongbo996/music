@@ -1,6 +1,4 @@
-FROM node:14.16.1
-COPY . /src
-WORKDIR /src
-RUN npm i
-EXPOSE 3000
-CMD ["npm", "build"]
+FROM nginx
+COPY ./build /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80
